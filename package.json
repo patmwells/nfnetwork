@@ -1,0 +1,25 @@
+{
+  "name": "nfnetwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "rm -rf dist/ && npm run build && node dist/index.js",
+    "test": "npm run test",
+    "build": "npx babel --presets=@babel/env --no-babelrc src --out-dir dist"
+  },
+  "author": "patrick wells",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "5.2.0"
+  },
+  "dependencies": {
+    "@babel/cli": "7.1.5",
+    "@babel/core": "7.1.6",
+    "@babel/polyfill": "7.0.0",
+    "@babel/preset-env": "7.1.6",
+    "cookie": "0.3.1",
+    "path-to-regexp": "2.4.0",
+    "pg": "7.7.1"
+  }
+}
