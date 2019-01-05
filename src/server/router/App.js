@@ -8,7 +8,8 @@ import log from '../log';
 export default class App extends Router {
   constructor(services) {
     super();
-    this.services = services;
+    const { db } = services;
+    this.db = db;
     this.handler = this.handler.bind(this);
   }
 
@@ -22,7 +23,7 @@ export default class App extends Router {
   }
 
   async handler(req, res) {
-    const context = new Context(this.services);
+    const context = new Context(this.db);
     context.request(req);
     const response = new ClientResponse(res, context);
     try {
