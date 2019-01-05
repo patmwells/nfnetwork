@@ -44,4 +44,14 @@ export default class Db {
   query(query) {
     return this.pool.query(query);
   }
+
+  createUserTable() {
+    return this.query(
+      'CREATE TABLE IF NOT EXISTS users (' +
+      'id SERIAL,' +
+      'firstName varchar(255),' +
+      'lastName varchar(255) NOT NULL' +
+      ')'
+    );
+  }
 }

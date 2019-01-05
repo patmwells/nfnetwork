@@ -1,4 +1,4 @@
-export default class SessionService {
+export default class Session {
   constructor(db) {
     this.db = db;
   }

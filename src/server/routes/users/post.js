@@ -5,7 +5,7 @@ export default async function post(context, response) {
     response.end();
     return;
   }
-  const user = await context.services.users.createUser(firstName, lastName);
+  const user = await context.createUser(firstName, lastName);
   response.writeHead(200);
   response.end(JSON.stringify(user));
 }
