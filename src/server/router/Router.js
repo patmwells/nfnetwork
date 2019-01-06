@@ -17,4 +17,8 @@ export default class Router {
   post(path, handler) {
     this.layers.push(new Layer('post', path, handler));
   }
+
+  delete(path, handler) {
+    this.layers.push(new Layer('delete', path, handler));
+  }
 }

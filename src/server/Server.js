@@ -1,7 +1,4 @@
 import Db from './db/Db';
-
-import User from './services/db/User';
-
 import App from './router/App';
 
 import users from './routes/users';
@@ -30,15 +27,7 @@ export default async function start() {
   await db.createUserTable();
   log.info('startup', 'created users table');
 
-  const services = {};
-
-  const user = new User(db);
-
-  services.db = {
-    user,
-  };
-
-  const app = new App(services);
+  const app = new App(db);
 
   app.use(users());
   app.use(handle404);

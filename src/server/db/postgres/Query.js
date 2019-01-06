@@ -37,7 +37,22 @@ export default class Query {
     return this;
   }
 
+  where() {
+    this.query = `${this.query} WHERE`;
+    return this;
+  }
+
+  equal(field, value) {
+    this.query = `${this.query} ${field} = '${value}'`;
+    return this;
+  }
+
+  delete() {
+    this.query = 'DELETE';
+    return this;
+  }
+
   write() {
-    return this.query;
+    return `${this.query};`;
   }
 }

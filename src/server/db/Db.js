@@ -37,7 +37,7 @@ export default class Db {
     }
   }
 
-  async connect() {
+  connect() {
     return this.pool.connect().then(client => client.release());
   }
 

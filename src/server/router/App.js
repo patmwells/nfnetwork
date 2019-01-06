@@ -1,14 +1,12 @@
 import http from 'http';
 import Router from './Router';
 import Context from './Context';
-import ClientResponse from './ClientResponse';
 import Pipe from './Pipe';
 import log from '../log';
 
 export default class App extends Router {
-  constructor(services) {
+  constructor(db) {
     super();
-    const { db } = services;
     this.db = db;
     this.handler = this.handler.bind(this);
   }
@@ -22,17 +20,15 @@ export default class App extends Router {
     });
   }
 
-  async handler(req, res) {
-    const context = new Context(this.db);
-    context.request(req);
-    const response = new ClientResponse(res, context);
+  async handler(request, response) {
     try {
-      const pipe = new Pipe(this.layers, context, response);
+      const context = new Context(request, this.db);
+      const pipe = new Pipe(this.layers, context, request, response);
       await pipe.next();
     } catch (ex) {
-      res.writeHead(500);
-      res.end();
-      log.error('app error', `unknown app error ${context.pathname}`, ex);
+      response.writeHead(500);
+      response.end();
+      log.error('app error', `unknown app error ${request.url}`, ex);
     }
   }
 }

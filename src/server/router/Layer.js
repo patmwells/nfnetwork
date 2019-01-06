@@ -14,7 +14,7 @@ export default class Layer {
       return true;
     }
 
-    const { pathname, method } = context;
+    const { pathname, method } = context.location;
 
     const match = this.regex.exec(pathname);
     if (!match || method !== this.method) {
@@ -32,7 +32,7 @@ export default class Layer {
       params[key.name] = value;
     }
 
-    context.params = params;
+    context.location.params = params;
 
     return true;
   }
